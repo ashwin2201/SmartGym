@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/*
 class UserDetails extends StatefulWidget {
   const UserDetails({Key? key}) : super(key: key);
 
@@ -80,5 +81,100 @@ class _UserDetailsState extends State<UserDetails> {
         ),
       ),
     );
+  }
+}
+*/
+class UserDetails extends StatefulWidget {
+  const UserDetails({Key? key}) : super(key: key);
+
+  @override
+  _UserDetailsState createState() => _UserDetailsState();
+}
+
+class _UserDetailsState extends State<UserDetails> {
+  TextEditingController _name = TextEditingController();
+  TextEditingController _age = TextEditingController();
+  TextEditingController _fitnessExp = TextEditingController();
+  bool? weightLoss = false;
+  bool? gainMuscle = false;
+  bool? bodyRecomp = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(color: Colors.lightBlue),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextFormField(
+                    controller: _name,
+                    decoration: InputDecoration(
+                        hintText: "John Doe",
+                        hintStyle: TextStyle(color: Colors.white),
+                        labelText: "Full name",
+                        labelStyle: TextStyle(color: Colors.white)),
+                  ),
+                  TextFormField(
+                    controller: _age,
+                    decoration: InputDecoration(
+                        hintText: "Enter your age",
+                        hintStyle: TextStyle(color: Colors.white),
+                        labelText: "Age",
+                        labelStyle: TextStyle(color: Colors.white)),
+                  ),
+                  TextFormField(
+                    controller: _fitnessExp,
+                    decoration: InputDecoration(
+                        hintText: "Fitness experience",
+                        hintStyle: TextStyle(color: Colors.white),
+                        labelText: "Please enter the years of gym experience",
+                        labelStyle: TextStyle(color: Colors.white)),
+                  ),
+                  Column(children: [
+                    Text('Please select all that apply to your fitness goals',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                    Row(
+                      children: [
+                        Text('Weightloss',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15)),
+                        Checkbox(
+                            value: this.weightLoss,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                this.weightLoss = value;
+                              });
+                            }),
+                        Text('Gain Muscle',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            )),
+                        Checkbox(
+                            value: this.gainMuscle,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                this.gainMuscle = value;
+                              });
+                            }), 
+                            Text('Body Recomp',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            )),
+                        Checkbox(
+                            value: this.bodyRecomp,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                this.bodyRecomp = value;
+                              });
+                            })//Checkbox],)
+                      ],
+                    )
+                  ]),
+                  Container(width: MediaQuery.of(context).size.width / 1.4,)
+                ])));
   }
 }

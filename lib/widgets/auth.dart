@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartgym/screens/home.dart';
+import 'package:smartgym/screens/tester.dart';
 import 'package:smartgym/screens/user_details.dart';
 import '../cloud_functions/flutterfire.dart';
 
@@ -20,7 +21,7 @@ class _LoginState extends State<Login> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
-        color: Colors.blueAccent,
+        color: Colors.lightBlue,
       ),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -50,11 +51,12 @@ class _LoginState extends State<Login> {
                 bool isRegistered =
                     await register(_emailField.text, _passwordField.text);
                 if (isRegistered) {
-                  print('Registered');
+                  print('Registered1');
                   // Navigate to the user details page
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserDetails()));
                 } else {
+                  print('Not registered');
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Login()));
                 }
@@ -73,11 +75,16 @@ class _LoginState extends State<Login> {
                 bool isSignedIn =
                     await login(_emailField.text, _passwordField.text);
                 bool userDetailsComplete = false;
+                bool isRegistered =
+                    await register(_emailField.text, _passwordField.text);
+
                 if (isSignedIn && userDetailsComplete) {
                   print('Signed in');
                   // Navigate to the users personal home page
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserHome()));
+                } else if (!isRegistered) {
+                  print('Not registered');
                 } else {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Login()));
