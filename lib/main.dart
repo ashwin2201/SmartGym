@@ -1,28 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'widgets/auth.dart';
+import 'package:flutter/material.dart';
+import 'package:smartgym/screens/home_screen.dart';
+import 'package:smartgym/screens/login_screen.dart';
+import 'package:smartgym/screens/signup_screen.dart';
+
 
 void main() async {
-  runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(title: Text("Smart Gym")),
-    body: Home(),)
-  ));
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:Login()
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SignupScreen(),
+      //  '/verify': (context) => VerifyEmail(),
+        '/sign-up': (context) => SignupScreen(),
+        '/login': (context) => LoginScreen(),
+        '/home': (context) => UserHome(),
+      }
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartgym/screens/home.dart';
+import 'package:smartgym/screens/home_screen.dart';
 import 'package:smartgym/screens/tester.dart';
 import 'package:smartgym/screens/user_details.dart';
 import '../cloud_functions/flutterfire.dart';
